@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://cdn.prod.website-files.com" rel="preconnect" />
+    <title>Creative Projects | Casey Blunt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/casey-blunt-portfolio-2-0.webflow.shared.5d5037176.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      WebFont.load({ google: { families: ["Boldonse:400", "Sora:100,200,300,400,500,600,700,800"] } });
+    </script>
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="images/app-icon.png" rel="apple-touch-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+      .projects-main {
+        padding: 48px var(--_sizes---section--padding-horizontal, 60px);
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .projects-page-header { margin-bottom: 40px; }
+
+      .projects-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---button--btn5);
+        color: var(--primary-color--p-500);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
+        transition: color 0.2s ease;
+      }
+      .projects-back-link:hover { color: var(--accent-color--a-500); }
+
+      .projects-page-title {
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---heading--h2);
+        color: var(--neutral-color--n-900);
+        text-transform: uppercase;
+        line-height: 1.1em;
+        margin: 0 0 8px;
+      }
+
+      .projects-page-subtitle {
+        font-family: var(--_typography---font-family--font-secondary);
+        font-size: var(--_typography---bodytext--b1);
+        color: var(--neutral-color--n-600);
+        margin: 0;
+      }
+
+      .projects-page-accent {
+        width: 48px;
+        height: 4px;
+        background-color: var(--accent-color--a-500);
+        border-radius: 2px;
+        margin: 16px 0 0;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .proj-card {
+        background-color: var(--primary-color--p-700);
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.25s cubic-bezier(.645,.045,.355,1),
+                    box-shadow 0.25s cubic-bezier(.645,.045,.355,1);
+      }
+      .proj-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(79,25,235,0.35);
+      }
+
+      .proj-card-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background-color: var(--primary-color--p-800);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .proj-card-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .proj-card-thumb-icon {
+        font-size: 48px;
+        color: var(--primary-color--p-500);
+      }
+
+      .proj-card-body { padding: 18px 20px 20px; }
+
+      .proj-card-title {
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---heading--h6);
+        color: white;
+        text-transform: uppercase;
+        line-height: 1.3em;
+        margin: 0;
+      }
+
+      .proj-card-accent {
+        width: 28px;
+        height: 3px;
+        background-color: var(--accent-color--a-500);
+        border-radius: 2px;
+        margin-top: 10px;
+        transition: width 0.3s cubic-bezier(.645,.045,.355,1);
+      }
+      .proj-card:hover .proj-card-accent { width: 100%; }
+
+      .proj-panel-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.65);
+        z-index: 9000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .proj-panel-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .proj-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 480px;
+        max-width: 100vw;
+        background-color: white;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(.645,.045,.355,1);
+        display: flex;
+        flex-direction: column;
+      }
+      .proj-panel-overlay.active .proj-panel { transform: translateX(0); }
+
+      .proj-panel-header {
+        background-color: var(--primary-color--p-700);
+        padding: 28px 28px 24px;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .proj-panel-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background 0.2s ease;
+      }
+      .proj-panel-close:hover { background: rgba(255, 255, 255, 0.3); }
+
+      .proj-panel-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        display: block;
+        background-color: var(--primary-color--p-800);
+        flex-shrink: 0;
+      }
+      .proj-panel-thumb-placeholder {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: var(--primary-color--p-800);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 80px;
+        color: var(--primary-color--p-500);
+        flex-shrink: 0;
+      }
+
+      .proj-panel-title {
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---heading--h4);
+        color: white;
+        text-transform: uppercase;
+        line-height: 1.2em;
+        margin: 16px 0 0;
+        padding-right: 44px;
+      }
+
+      .proj-panel-body {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        flex: 1;
+      }
+
+      .proj-panel-section {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .proj-panel-label {
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---button--btn6);
+        color: var(--primary-color--p-500);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .proj-panel-text {
+        font-family: var(--_typography---font-family--font-secondary);
+        font-size: var(--_typography---bodytext--b1);
+        color: var(--neutral-color--n-900);
+        line-height: 1.65em;
+        margin: 0;
+      }
+
+      .proj-panel-divider {
+        border: none;
+        border-top: 1px solid var(--neutral-color--n-300);
+        margin: 0;
+      }
+
+      .proj-panel-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background-color: var(--accent-color--a-500);
+        color: var(--neutral-color--n-900);
+        font-family: var(--_typography---font-family--font-primary);
+        font-size: var(--_typography---button--btn4);
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 18px 28px;
+        width: fit-content;
+        transition: background-color 0.3s cubic-bezier(.645,.045,.355,1);
+        margin-top: 4px;
+      }
+      .proj-panel-link-btn:hover { background-color: var(--accent-color--a-600); }
+      .proj-panel-link-btn.no-link { opacity: 0.4; pointer-events: none; }
+
+      @media (max-width: 991px) {
+        .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 767px) {
+        .projects-main { padding: 32px 24px; }
+        .projects-grid { grid-template-columns: 1fr; }
+        .proj-panel { width: 100vw; }
+      }
+    </style>
+  </head>
+
+  <body class="body">
+    <div class="section-wrapper">
+      <div class="container">
+
+        <div class="side-section _2">
+          <div class="nav-section">
+            <section class="side-navbar">
+              <div class="side-navbar-block navbar">
+                <div class="side-nav-flex-2">
+                  <a href="index.html" class="side-nav-inner-block-1 w-inline-block">
+                    <img loading="lazy" src="images/logo.png" alt="" class="navbar-logo" />
+                  </a>
+                </div>
+                <div class="side-nav-inner-block-3">
+                  <div class="side-nav-inner-block-2">
+                    <a href="index.html#About" class="nav-link">About</a>
+                    <a href="index.html#Schedule" class="nav-link">Projects</a>
+                    <a href="index.html#Testimonial" class="nav-link">Resume</a>
+                    <a href="index.html#CTA" class="nav-link">Contact</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section">
+          <main class="projects-main">
+
+            <header class="projects-page-header">
+              <a href="index.html#Schedule" class="projects-back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Projects
+              </a>
+              <h1 class="projects-page-title">Creative Projects</h1>
+              <p class="projects-page-subtitle">3D modeling, design, and other art</p>
+              <div class="projects-page-accent"></div>
+            </header>
+
+            <div class="projects-grid" id="projects-grid"></div>
+
+          </main>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="proj-panel-overlay" id="proj-panel-overlay" onclick="handleOverlayClick(event)">
+      <div class="proj-panel" id="proj-panel">
+
+        <img class="proj-panel-thumb" id="panel-thumb" src="" alt="" style="display:none" />
+        <div class="proj-panel-thumb-placeholder" id="panel-thumb-placeholder">
+          <i class="fa-solid fa-palette"></i>
+        </div>
+
+        <div class="proj-panel-header">
+          <button class="proj-panel-close" onclick="closePanel()" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="proj-panel-title" id="panel-title"></div>
+        </div>
+
+        <div class="proj-panel-body">
+          <div class="proj-panel-section">
+            <div class="proj-panel-label">My Role</div>
+            <p class="proj-panel-text" id="panel-role"></p>
+          </div>
+          <div class="proj-panel-section">
+            <div class="proj-panel-label">Date</div>
+            <p class="proj-panel-text" id="panel-date"></p>
+          </div>
+          <hr class="proj-panel-divider" />
+          <div class="proj-panel-section">
+            <div class="proj-panel-label">Description</div>
+            <p class="proj-panel-text" id="panel-desc"></p>
+          </div>
+          <hr class="proj-panel-divider" />
+          <a class="proj-panel-link-btn" id="panel-link-btn" href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+          </a>
+          <div id="panel-extra-links"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      // ── ADD / EDIT YOUR PROJECTS HERE ──────────────────────────────────────
+      const projects = [
+        {
+          title: "Project One",
+          thumb: null,
+          description: "A description of what this project is and what it does. Replace this with your own text.",
+          role: "3D Artist",
+          date: "Jan 2024 – Mar 2024",
+          link: null
+        },
+        {
+          title: "Project Two",
+          thumb: null,
+          description: "A description of what this project is and what it does. Replace this with your own text.",
+          role: "Designer",
+          date: "Apr 2024 – Jun 2024",
+          link: null
+        },
+        {
+          title: "Project Three",
+          thumb: null,
+          description: "A description of what this project is and what it does. Replace this with your own text.",
+          role: "Artist",
+          date: "Jul 2024 – Sep 2024",
+          link: null
+        }
+      ];
+      // ───────────────────────────────────────────────────────────────────────
+
+      function buildGrid() {
+        var grid = document.getElementById('projects-grid');
+        projects.forEach(function(p, i) {
+          var thumbHTML = p.thumb
+            ? '<div class="proj-card-thumb"><img src="' + p.thumb + '" alt="' + p.title + '"></div>'
+            : '<div class="proj-card-thumb"><div class="proj-card-thumb-icon"><i class="fa-solid fa-palette"></i></div></div>';
+
+          var card = document.createElement('div');
+          card.className = 'proj-card';
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.innerHTML =
+            thumbHTML +
+            '<div class="proj-card-body">' +
+              '<div class="proj-card-title">' + p.title + '</div>' +
+              '<div class="proj-card-accent"></div>' +
+            '</div>';
+          card.addEventListener('click', function() { openPanel(i); });
+          card.addEventListener('keydown', function(e) { if (e.key === 'Enter') openPanel(i); });
+          grid.appendChild(card);
+        });
+      }
+
+      function openPanel(idx) {
+        var p = projects[idx];
+        document.getElementById('panel-title').textContent = p.title;
+        document.getElementById('panel-desc').textContent = p.description;
+        document.getElementById('panel-role').textContent = p.role;
+        document.getElementById('panel-date').textContent = p.date;
+
+        var thumb = document.getElementById('panel-thumb');
+        var placeholder = document.getElementById('panel-thumb-placeholder');
+        if (p.thumb) {
+          thumb.src = p.thumb;
+          thumb.alt = p.title;
+          thumb.style.display = 'block';
+          placeholder.style.display = 'none';
+        } else {
+          thumb.style.display = 'none';
+          placeholder.style.display = 'flex';
+        }
+
+        var btn = document.getElementById('panel-link-btn');
+        if (p.link) {
+          btn.href = p.link;
+          btn.classList.remove('no-link');
+        } else {
+          btn.href = '#';
+          btn.classList.add('no-link');
+        }
+
+        var extraLinks = document.getElementById('panel-extra-links');
+        extraLinks.innerHTML = '';
+        if (p.links && p.links.length) {
+          p.links.forEach(function(l) {
+            var a = document.createElement('a');
+            a.className = 'proj-panel-link-btn';
+            a.href = l.url;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> ' + l.label;
+            extraLinks.appendChild(a);
+          });
+        }
+
+        document.getElementById('proj-panel-overlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePanel() {
+        document.getElementById('proj-panel-overlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function handleOverlayClick(e) {
+        if (e.target === document.getElementById('proj-panel-overlay')) closePanel();
+      }
+
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
+
+      buildGrid();
+    </script>
+  </body>
+</html>
