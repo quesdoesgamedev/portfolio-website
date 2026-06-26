@@ -245,6 +245,7 @@
         color: var(--neutral-color--n-900);
         line-height: 1.65em;
         margin: 0;
+        white-space: pre-line;
       }
 
       .proj-panel-divider {
@@ -378,34 +379,62 @@
       // ── ADD / EDIT YOUR PROJECTS HERE ──────────────────────────────────────
       // thumb: path to image file, or null for the default icon placeholder
       // link: URL string, or null to disable the button
+      /* Projects to add from repository:
+      - Maybe rebuild Random Phrases with real steam integration and a better UI? (235)
+      - Project 1 (235)
+      - Project 3 (235)
+      - Maybe firebase stuff? would need to fix expired tokens first. alternatively could make a new firebase project (330)
+      - Halo Audio Visualizer (330)
+      - HW4 NYS state park buddy (330)
+      - Project 4; include documentation since its a physical computing project (470)
+          - https://cgbigme470.wordpress.com/2025/04/30/project-4-smart-lock/
+
+      - Include Physical computing website for funsies
+      https://cgbigme470.wordpress.com/
+      */
       const projects = [
         {
           title: "Cornucopia",
-          thumb: null,
-          description: "Cornucopia is a cooperative sci-fi board game with elements of survival, exploration, and horror. The game takes place in an abandoned factory on an alien planet where the players crash landed. The goal of the players is to explore the factory and collect scrap material to fix the thrusters, hull and computer and find the power core. While moving through the factory, players need to avoid monsters, manage their resources and deal with hazardous events in order to escape alive. What makes our game unique is the method of exploring the factory. Unlike most other games that have a set board size or shape, our board will be generated using a deck of tiles that make up the rooms, hallways, forks, and deadends of the factory. Whenever a player reaches an unexplored area, they draw a tile from the deck and place it on the board to reveal the area. With this method of map generation the players don’t know the size or shape of the factory, and this adds a layer of mystery to the exploration. The other part of the game that is unique are the monsters that roam the factory. These monsters act autonomously moving through the factory, often unseen via vents, and the players have to strategically outmaneuver these monsters to survive. As players make their way through the factory, they will acquire materials like scrap metal, batteries and oil that will be used to repair the ship. Players can also find various items including flashlights which will help illuminate the area and place down more board tiles, a weapon to fight off the monsters, a medkit to heal a fellow teammate, a blowtorch to block monster movement and a pocket teleporter to teleport to another teammate. Hazardous events occur as you explore the factory that will throw a wrench in the team's exploration. For as long as the events are not dealt with, there will be negative effects such as a boost in monster strength, medbay disabled or oxygen deficiency. If the team is able to avoid the monsters and handle events while simultaneously repairing the ship, the players may escape the alien planet and return home.",
+          thumb: "images\\cornucopia-thumb.jpg",
+          icon: "fa-solid fa-dice-d20",
+          description: "Cornucopia is a cooperative sci-fi board game with elements of survival, exploration, and horror. The game takes place in an abandoned factory on an alien planet where the players have crash landed. The goal is to explore the factory and collect scrap material to fix the thrusters, hull and computer and find the power core. While moving through the factory, players will need to avoid monsters, manage their resources and deal with hazardous events in order to escape alive. \n \nWhat makes our game unique is the method of exploring the factory. Unlike most other games that have a set board size or shape, Cornucopia is generated using a deck of tiles that make up the rooms, hallways, forks, and deadends of the factory. Whenever a player reaches an unexplored area, they draw a tile from the deck and place it on the board to reveal the area. With this method of map generation the players don’t know the size or shape of the factory, adding a layer of mystery and replayability. \n \nAs players make their way through the factory, they will acquire materials like scrap metal, batteries and oil that will be used to repair the ship. \n \nThis game was my first real attempt at designing and shipping not only a board game, but a large-scale game project. As lead designer, I had to manage a team of 4 other designers and artists, and work with them to create a cohesive game experience. I also had to manage the project timeline and make sure we were on track to finish the game by the end of the semester. This project was a great learning experience for me, and I am proud of what we accomplished as a team.\n \nThis game is available to play on the Steam Workshop, and the link to the game is provided below. The design document and how to play video are also provided.",
           role: "Lead Designer, Lead Artist, Narrative Designer, and Developer",
           date: "Jan 2024 – May 2024",
           link: "https://steamcommunity.com/sharedfiles/filedetails/?id=3193871253",
           links: [                                // optional extra buttons — omit or set to null to hide
             { label: "Design Document", url: "https://docs.google.com/document/d/1WX_L5G3g-VK4MC7nbQVlHHXSgVffR57bFyKuLOhqRxQ/edit?tab=t.0" },
             { label: "How to Play Video", url: "https://drive.google.com/file/d/1jrFpozonlkJA7WuD7RC19zO_9SHcfFP1/view" }
-        ]
+          ]
         },
         {
           title: "ENTROPY",
-          thumb: null,
-          description: "ENTROPY is a single player narrative-driven first person game featuring a custom-built zero gravity movement system and puzzle elements. The player takes the role of a crew member on an interstellar voyage in deep space, abruptly woken up from cryo sleep by the ships onboard AI. The AI warns you there is severe damage done to the ship's compact nuclear reactor; caused by a foreign entity now roaming the ship’s corridors, stalking your every move and sound. Because of the damage done to the reactor, artificial gravity on the ship is no longer operational. Therefore, you must navigate your ship in full zero g to fix the generator and take out the foreign entity. \nThis game is a group project between myself and 4 other peers in my major. We started this project as a class project, but decided to continue working on it after the Fall 2024 semester has concluded. We took our project to the next level by partnering with RIT's MAGIC Maker program, an on-campus game incubation program designed to take student's projects from side project to a ready-to-ship game. Over the course of the summer, I worked alongside the main development team while taking on my own internship, taking on sound effects design and some music. In the Fall of 2025, we entered the next stage of the program, working to prepare our game to release alongside our school obligations. Project files are available upon request.",
+          thumb: "images\\entropy-thumb.png",
+          icon: "fa-solid fa-rocket",
+          description: "ENTROPY is a single player narrative-driven first person game featuring a custom-built zero gravity movement system and puzzle elements. The player takes the role of a crew member on an interstellar voyage in deep space, abruptly woken up from cryo sleep by the ships onboard AI. The AI warns there is severe damage done to the ship's compact nuclear reactor; caused by a foreign entity now roaming the ship’s corridors, stalking your every move and sound. Because of the damage done to the reactor, artificial gravity on the ship is no longer operational. Therefore, the player must navigate the ship in full zero gravity to survive. \n \nThis game is a group project between myself and 4 other peers in my major. ENTROPY started as a class project, but we decided to continue working on it after the Fall 2024 semester concluded. We took our project to the next level by partnering with RIT's MAGIC Maker program, an on-campus game incubation program designed to take student's projects from side project to a ready-to-ship game. Over the course of the summer, I worked alongside the main development team while taking on my own internship, tackling sound effects design, music, and UI/UX design. In the Fall of 2025, we entered the next stage of the program, working to prepare our game to release alongside our school obligations. Project files are available upon request.",
           role: "Sound Engineer, UI/UX Designer, and Developer",
           date: "Sep 2024 – Dec 2025",
           link: "https://noahsark13.itch.io/entropy"
         },
         {
           title: "Pokedex ++",
-          thumb: null,
-          description: "Pokedex ++ is a project I worked on to practice my ability to use APIs and JavaScript. The website allows the user to search for a pokemon, move, or region from the Pokemon video game series and pulls search queries from PokeAPI, then returns the search information to the user. I built this project from scratch, using HTML, CSS, and JavaScript.",
+          thumb: "images\\pokedex-thumb.png",
+          icon: "fa-solid fa-dice-d20",
+          description: "Pokedex ++ is a small-scale project I built for my web app development class. My goal wasto practice my ability to use APIs and JavaScript. The website allows the user to search for a pokemon, move, or region from the Pokemon video game series and pulls search queries from PokeAPI, then returns the search information to the user. I built this project from scratch, using HTML, CSS, and JavaScript.",
           role: "Sole Developer",
           date: "Oct 2023",
           link: "https://people.rit.edu/cgb2920/235/project2/" //change this after getting project files off people.rit.edu
+        },
+        {
+          title: "Chest Lock",
+          thumb: "images\\smart-lock-thumb.png",
+          icon: "fa-solid fa-lock",
+          description: "Chest Lock is a physical computing project I built for my Physical Computing & Alt Interfaces Class. The project utilizes an Arduino ESP32 microcontroller, a servo motor, and a custom web application to create a smart lock system. The user can lock and unlock the chest using the web application, which communicates with the ESP32 over Bluetooth. This project allowed me to explore the intersection of hardware and software, as well as gain experience in web development and microcontroller programming. \n \nWhile the project is not available to use first-hand, I have included a link to the project documentation that extensively details the design and implementation of the smart lock system.",
+          role: "Sole Developer",
+          date: "Apr 2025",
+          link: "https://people.rit.edu/~cgb2920/470/Project%204/", //change this after getting project files off people.rit.edu
+          links: [
+            { label: "Project Documentation", url: "https://cgbigme470.wordpress.com/2025/04/30/project-4-smart-lock/" }
+          ]
         }
       ];
       // ───────────────────────────────────────────────────────────────────────
@@ -413,9 +442,10 @@
       function buildGrid() {
         const grid = document.getElementById('projects-grid');
         projects.forEach(function(p, i) {
+          var icon = p.icon || 'fa-solid fa-code';
           var thumbHTML = p.thumb
             ? '<div class="proj-card-thumb"><img src="' + p.thumb + '" alt="' + p.title + '"></div>'
-            : '<div class="proj-card-thumb"><div class="proj-card-thumb-icon"><i class="fa-solid fa-code"></i></div></div>';
+            : '<div class="proj-card-thumb"><div class="proj-card-thumb-icon"><i class="' + icon + '"></i></div></div>';
 
           var card = document.createElement('div');
           card.className = 'proj-card';
@@ -449,6 +479,7 @@
           placeholder.style.display = 'none';
         } else {
           thumb.style.display = 'none';
+          placeholder.querySelector('i').className = p.icon || 'fa-solid fa-code';
           placeholder.style.display = 'flex';
         }
 
